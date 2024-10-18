@@ -22,7 +22,11 @@ class Board
 
   def update(col, token)
     row = 6
-    row -= 1 while cells[[row, col]] == ' ' && row != 1
+    # subtract row to 1 to scan for the spot on which the token is supposed to land
+    while cells[[row - 1, col]] == ' '
+      row -= 1
+      break if row == 1
+    end
     cells[[row, col]] = token
   end
 end
