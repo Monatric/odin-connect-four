@@ -2,14 +2,14 @@ require_relative '../lib/board'
 
 describe Board do
   describe '#update' do
-    let(:token) { 'X' }
+    let(:token_x) { 'X' }
     subject(:board) { described_class.new }
 
     context 'when the player selects an empty column' do
       it 'updates the board with a token at the very bottom of the column' do
         column_one = 1
-        board.update(column_one, token)
-        expect(board.cells[[1, 1]]).to include(token)
+        board.update(column_one, token_x)
+        expect(board.cells[[1, 1]]).to include(token_x)
       end
     end
 
@@ -28,8 +28,8 @@ describe Board do
 
       it 'updates the board with a token at the third row of the column' do
         column_one = 1
-        board.update(column_one, token)
-        expect(board.cells[[3, 1]]).to include(token)
+        board.update(column_one, token_x)
+        expect(board.cells[[3, 1]]).to include(token_x)
       end
     end
   end
