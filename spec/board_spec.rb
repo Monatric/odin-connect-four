@@ -14,7 +14,7 @@ describe Board do
     end
 
     context 'when the player selects a column with a token on second row' do
-      let(:cells_full_first_row) do
+      let(:cells_two_rows_full) do
         {
           [1, 1] => 'X',
           [2, 1] => 'X',
@@ -24,7 +24,7 @@ describe Board do
           [6, 1] => ' '
         }
       end
-      subject(:board) { described_class.new(cells_full_first_row) }
+      subject(:board) { described_class.new(cells_two_rows_full) }
 
       it 'updates the board with a token at the third row of the column' do
         column_one = 1
