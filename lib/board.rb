@@ -19,4 +19,10 @@ class Board
 
     board
   end
+
+  def update(col, token)
+    row = 6
+    row -= 1 while cells[[row, col]] == ' ' && row != 1
+    cells[[row, col]] = token
+  end
 end
