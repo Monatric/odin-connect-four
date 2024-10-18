@@ -8,8 +8,23 @@ Components of ConnectFour:
   - Grid (board)
     - six row
     - seven column
+    - Methods needed:
+      - initializes the board as a hash with coordinates as keys like (1, 1), (1, 2)... (7, 6)
+      - updates the board
+      - shows the board
+      - game over
+      - full
+      - valid move
+      - constant array of algorithm for directions
   
   - Game
+    - Methods needed:
+      - initializes current turn, player 1 & 2, board
+      - sets up Players
+      - switches turn
+      - conclusion
+        - prints the winner or tie
+
     - To check for winner, everytime a player inserts a token, the scanner starts from where
       the token lands. From there, the token checks for all directions if there is an identical
       token, and checks until it counts 4. Otherwise, it checks another. 
@@ -56,3 +71,9 @@ Components of ConnectFour:
             -1, 1
             -1, 0
             -1, -1
+    
+  - Main
+    - starts the game
+    - asks for repeating game
+    - asks for column selection 
+    -
