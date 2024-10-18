@@ -1,0 +1,58 @@
+Components of ConnectFour:
+  - Two Players
+    - Player 1
+      - Token: ♠
+    - Player 2
+      - Token: ♣
+
+  - Grid (board)
+    - six row
+    - seven column
+  
+  - Game
+    - To check for winner, everytime a player inserts a token, the scanner starts from where
+      the token lands. From there, the token checks for all directions if there is an identical
+      token, and checks until it counts 4. Otherwise, it checks another. 
+
+      Once the scanner finds a direction/s, it will only start scanning from that direction until
+      it counts 4. If not, switch to the other direction. If all directions doesn't lead to 4,
+      continue the game.
+
+      For example:
+        [
+          [O O O O],
+          [O y x y],
+          [O x x x],
+          [x y y y]
+        ]
+        into
+        [
+          [O O O x],
+          [O y x y],
+          [O x x x],
+          [x y y y]
+        ]
+        Last inserted token position: [4, 4]
+        How would it check is:
+          Is there an 'x' in
+            [4, 3]
+            [5, 3]
+            [5, 4]
+            [5, 5] (maybe useless bc token only goes down)
+            [4, 5]
+            [3, 5]
+            [3, 4]
+            all no except
+            [3, 3] (-1, -1)
+              [2, 2] 
+                [1, 1] Total count: 4
+          
+          Direction pattern:
+            0, -1
+            1, -1
+            1, 0
+            1, 1 (maybe useless bc token only goes down)
+            0, 1
+            -1, 1
+            -1, 0
+            -1, -1
