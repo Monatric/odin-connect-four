@@ -77,3 +77,23 @@ Components of ConnectFour:
     - asks for repeating game
     - asks for column selection 
     -
+
+
+Save for later:
+context 'when the player selects a full column' do
+      let(:cells_column_full) do
+        {
+          [1, 1] => 'X',
+          [2, 1] => 'X',
+          [3, 1] => 'O',
+          [4, 1] => 'X',
+          [5, 1] => 'O',
+          [6, 1] => 'O'
+        }
+      end
+      subject(:board) { described_class.new(cells_column_full) }
+
+      it 'displays a message that it cannot fill that column' do
+        error_msg = ''
+      end
+    end
