@@ -35,7 +35,6 @@ describe Board do
   end
 
   describe '#game_over?' do
-    subject(:board) { described_class.new(cells_three_tokens) }
     let(:col_one) { 1 }
     before do
       board.update(col_one, token_x)
@@ -58,6 +57,7 @@ describe Board do
           # [6, 2] => ' '
         }
       end
+      subject(:board) { described_class.new(cells_three_tokens) }
 
       it 'returns true' do
         result = board.game_over?(col_one)
@@ -66,7 +66,7 @@ describe Board do
     end
 
     context 'when the last token dropped does not connect four' do
-      let(:cells_three_tokens) do
+      let(:cells_two_tokens) do
         {
           [1, 1] => 'X',
           [2, 1] => 'X',
@@ -76,6 +76,7 @@ describe Board do
           [6, 1] => ' '
         }
       end
+      subject(:board) { described_class.new(cells_two_tokens) }
 
       it 'returns false' do
         result = board.game_over?(col_one)
