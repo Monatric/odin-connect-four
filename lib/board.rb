@@ -9,7 +9,7 @@ class Board
   end
 
   # rubocop:disable Metrics/AbcSize
-  def show
+  def show # rubocop:disable Metrics/MethodLength
     puts <<-HEREDOC
 
     | #{cells[[6, 1]]} | #{cells[[6, 2]]} | #{cells[[6, 3]]} | #{cells[[6, 4]]} | #{cells[[6, 5]]} | #{cells[[6, 6]]} | #{cells[[6, 7]]} |
