@@ -74,7 +74,7 @@ class Board
     row -= 1 while cells[[row, col]] == ' ' && row != 1
     # get the value (token) from that key
     token = cells[[row, col]]
-    true if count_vertically(row, col, token) == 4
+    count_vertically(row, col, token) == 4
   end
 
   private
