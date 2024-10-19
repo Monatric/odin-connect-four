@@ -4,6 +4,27 @@
 class Board
   attr_reader :cells
 
+  # DIRECTIONS = [
+  #   # horizontal
+  #   [[0, -1], [0, 1]],
+  #   # diagonal backward
+  #   [[1, -1], [-1, 1]],
+  #   # diagonal forward
+  #   [[-1, -1], [1, 1]],
+  #   # vertical
+  #   [-1, 0]
+  #   # [-1, 1],
+  #   # [-1, 0],
+  #   # [-1, -1]
+  # ]
+
+  DIRECTIONS = {
+    vert: [-1, 0],
+    hori: [[0, -1], [0, 1]],
+    diag_b: [[1, -1], [-1, 1]],
+    diag_f: [[-1, -1], [1, 1]]
+  }
+
   def initialize(cells = create)
     @cells = cells
   end
@@ -46,5 +67,27 @@ class Board
     # subtract row to 1 to scan for the spot on which the token is supposed to land
     row -= 1 while cells[[row - 1, col]] == ' ' && row != 1
     cells[[row, col]] = token
+  end
+
+  def game_over?(col)
+    row = 6
+    row -= 1 while cells[[row, col]] == ' ' && row != 1
+    # get the value (token) from that key
+    token = cells[[row, col]]
+    true if count_vertically(row, col, token) == 4
+  end
+
+  private
+
+  def count_vertically(row, col, token)
+    count = 1
+    next_coord = [row + DIRECTIONS[:vert][0], col + DIRECTIONS[:vert][1]]
+    while cells[next_coord] == token
+      count += 1
+      # p count
+
+      next_coord = [next_coord[0] + DIRECTIONS[:vert][0], next_coord[1] + DIRECTIONS[:vert][1]]
+    end
+    count if count == 4
   end
 end
