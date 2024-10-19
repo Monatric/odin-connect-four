@@ -14,6 +14,7 @@ Components of ConnectFour:
       - shows the board
       - game over
       - full
+      - column full
       - valid move
       - constant array of algorithm for directions
   
@@ -71,6 +72,32 @@ Components of ConnectFour:
             -1, 1
             -1, 0
             -1, -1
+            make horizontal key =>
+            make diagonal backward key
+            make diagonal forward key
+            make vertical key
+            next_coord = [row + key[0], col + key[0]
+
+            make helper methods
+              #count_vertically(row, col, token)
+                count = 1
+                next_coord = [row + DIRECTION[:vert][0], col + DIRECTION[:vert][1]]
+                while cells[next_coord] == token
+                  count += 1
+                  next_coord = [row + DIRECTION[:vert][0], col + DIRECTION[:vert][1]]
+                return 4 if count == 4 
+
+
+
+            Loop through this array
+            Subtract/add these numbers to the row col
+            Start count from 1
+            If it matches a token, use the same array that was added/subbed to row col
+            count += 1
+            Return true if count == 4
+            If the token changes, reset counting to 1 because it is not connect four
+            Continue to the next array. Looping through everything without count == 4 means not game over (FALSE)
+
     
   - Main
     - starts the game
