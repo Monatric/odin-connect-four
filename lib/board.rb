@@ -53,6 +53,10 @@ class Board
     !cells.value?(' ')
   end
 
+  def full_column?(col)
+    cells[[6, col]] != ' '
+  end
+
   def game_over?(col)
     row = 6
     row -= 1 while cells[[row, col]] == ' ' && row != 1

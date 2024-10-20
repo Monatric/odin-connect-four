@@ -2,6 +2,11 @@ require_relative '../lib/board'
 
 describe Board do
   let(:token_x) { 'X' }
+  let(:col_one) { 1 }
+  let(:col_two) { 2 }
+  let(:col_three) { 3 }
+  let(:col_four) { 4 }
+
   describe '#update' do
     subject(:board) { described_class.new }
 
@@ -35,10 +40,6 @@ describe Board do
   end
 
   describe '#game_over?' do
-    let(:col_one) { 1 }
-    let(:col_two) { 2 }
-    let(:col_four) { 4 }
-
     context 'when the last token dropped connects a four vertically' do
       let(:cells_three_tokens) do
         {
@@ -382,6 +383,35 @@ describe Board do
 
       it 'returns false' do
         expect(board).not_to be_full
+      end
+    end
+  end
+
+  describe '#full_column?' do
+    let(:three_columns) do
+      {
+        [6, 1] => ' ', [6, 2] => ' ', [6, 3] => 'O',
+        [5, 1] => ' ', [5, 2] => ' ', [5, 3] => 'X',
+        [4, 1] => ' ', [4, 2] => ' ', [4, 3] => 'O',
+        [3, 1] => ' ', [3, 2] => ' ', [3, 3] => 'X',
+        [2, 1] => ' ', [2, 2] => ' ', [2, 3] => 'O',
+        [1, 1] => 'X', [1, 2] => 'X', [1, 3] => 'X'
+
+      }
+    end
+    subject(:board_three_columns) { described_class.new(three_columns) }
+
+    context 'when the selected column is full' do
+      it 'returns true' do
+        result = board_three_columns.full_column?(col_three)
+        expect(result).to be true
+      end
+    end
+
+    context 'when the selected column is not full' do
+      it 'returns false' do
+        result = board_three_columns.full_column?(col_one)
+        expect(result).to be false
       end
     end
   end
