@@ -61,6 +61,30 @@ describe Board do
       end
     end
 
+    context 'when the last token dropped connects a four horizontally' do
+      context 'when the last token dropped at left edge' do
+        let(:cells_three_tokens) do
+          {
+            [6, 1] => ' ', [6, 2] => ' ', [6, 3] => ' ', [6, 4] => ' ',
+            [5, 1] => ' ', [5, 2] => ' ', [5, 3] => ' ', [5, 4] => ' ',
+            [4, 1] => ' ', [4, 2] => ' ', [4, 3] => ' ', [4, 4] => ' ',
+            [3, 1] => ' ', [3, 2] => ' ', [3, 3] => 'X', [3, 4] => 'O',
+            [2, 1] => ' ', [2, 2] => ' ', [2, 3] => 'O', [2, 4] => 'O',
+            [1, 1] => ' ', [1, 2] => 'X', [1, 3] => 'X', [1, 4] => 'X'
+          }
+        end
+        subject(:board_three_tokens) { described_class.new(cells_three_tokens) }
+        before do
+          board_three_tokens.update(col_one, token_x)
+        end
+
+        it 'returns true' do
+          result = board_three_tokens.game_over?(col_one)
+          expect(result).to be true
+        end
+      end
+    end
+
     context 'when the last token dropped connects four diagonally forward' do
       context 'when the last token dropped at right edge' do
         let(:cells_three_tokens_diag_f) do
