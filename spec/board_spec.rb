@@ -355,4 +355,20 @@ describe Board do
       end
     end
   end
+
+  describe '#full?' do
+    context 'when the board is full' do
+      let(:full_cells) do
+        {
+          [2, 1] => 'X', [2, 2] => 'O',
+          [1, 1] => 'O', [1, 2] => 'X'
+        }
+      end
+      subject(:board) { described_class.new(full_cells) }
+
+      it 'returns true' do
+        expect(board).to be_full
+      end
+    end
+  end
 end

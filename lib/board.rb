@@ -48,6 +48,11 @@ class Board
     cells[[row, col]] = token
   end
 
+  def full?
+    # inverse it. If no ' ' matches, then return true/full. Otherwise false/unfull.
+    !cells.value?(' ')
+  end
+
   def game_over?(col)
     row = 6
     row -= 1 while cells[[row, col]] == ' ' && row != 1
