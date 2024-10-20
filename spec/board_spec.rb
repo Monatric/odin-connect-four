@@ -36,9 +36,7 @@ describe Board do
 
   describe '#game_over?' do
     let(:col_one) { 1 }
-    before do
-      board.update(col_one, token_x)
-    end
+    let(:col_four) { 4 }
 
     context 'when the last token dropped connects a four vertically' do
       let(:cells_three_tokens) do
@@ -49,18 +47,15 @@ describe Board do
           [4, 1] => ' ',
           [5, 1] => ' ',
           [6, 1] => ' '
-          # [1, 2] => ' ',
-          # [2, 2] => ' ',
-          # [3, 2] => ' ',
-          # [4, 2] => ' ',
-          # [5, 2] => ' ',
-          # [6, 2] => ' '
         }
       end
-      subject(:board) { described_class.new(cells_three_tokens) }
+      subject(:board_three_tokens) { described_class.new(cells_three_tokens) }
+      before do
+        board_three_tokens.update(col_one, token_x)
+      end
 
       it 'returns true' do
-        result = board.game_over?(col_one)
+        result = board_three_tokens.game_over?(col_one)
         expect(result).to be true
       end
     end
@@ -76,11 +71,36 @@ describe Board do
           [6, 1] => ' '
         }
       end
-      subject(:board) { described_class.new(cells_two_tokens) }
+      subject(:board_two_tokens) { described_class.new(cells_two_tokens) }
+      before do
+        board_two_tokens.update(col_one, token_x)
+      end
 
       it 'returns false' do
-        result = board.game_over?(col_one)
+        result = board_two_tokens.game_over?(col_one)
         expect(result).to be false
+      end
+    end
+
+    context 'when the last token dropped at right edge connects four diagonally forward' do
+      let(:cells_three_tokens_diag_f) do
+        {
+          [6, 1] => ' ', [6, 2] => ' ', [6, 3] => ' ', [6, 4] => ' ',
+          [5, 1] => ' ', [5, 2] => ' ', [5, 3] => ' ', [5, 4] => ' ',
+          [4, 1] => ' ', [4, 2] => ' ', [4, 3] => ' ', [4, 4] => ' ',
+          [3, 1] => ' ', [3, 2] => ' ', [3, 3] => 'X', [3, 4] => 'O',
+          [2, 1] => 'X', [2, 2] => 'X', [2, 3] => 'O', [2, 4] => 'O',
+          [1, 1] => 'X', [1, 2] => 'O', [1, 3] => 'O', [1, 4] => 'O'
+        }
+      end
+      subject(:board_diagonal_tokens) { described_class.new(cells_three_tokens_diag_f) }
+      before do
+        board_diagonal_tokens.update(col_four, token_x)
+      end
+
+      it 'returns true' do
+        result = board_diagonal_tokens.game_over?(col_four)
+        expect(result).to be true
       end
     end
   end
