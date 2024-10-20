@@ -74,8 +74,8 @@ class Board
     row -= 1 while cells[[row, col]] == ' ' && row != 1
     # get the value (token) from that key
     token = cells[[row, col]]
-    return true if count_vertically(row, col, token) == 4
-    return true if count_diagonally_f(row, col, token) == 4
+    return true if count_vertically(row, col, token) >= 4
+    return true if count_diagonally_f(row, col, token) >= 4
 
     false
   end
@@ -87,11 +87,9 @@ class Board
     next_coord = [row + DIRECTIONS[:vert][0], col + DIRECTIONS[:vert][1]]
     while cells[next_coord] == token
       count += 1
-      # p count
-
       next_coord = [next_coord[0] + DIRECTIONS[:vert][0], next_coord[1] + DIRECTIONS[:vert][1]]
     end
-    count if count == 4
+    count
   end
 
   def count_diagonally_f(row, col, token)
@@ -106,6 +104,6 @@ class Board
       count += 1
       next_forward_coord = [next_forward_coord[0] + 1, next_forward_coord[1] + 1]
     end
-    count if count == 4
+    count
   end
 end
