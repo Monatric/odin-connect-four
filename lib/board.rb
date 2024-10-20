@@ -96,14 +96,15 @@ class Board
 
   def count_diagonally_f(row, col, token)
     count = 1
-    next_coord = [row + DIRECTIONS[:diag_f][0][0], col + DIRECTIONS[:diag_f][0][1]]
-    while cells[next_coord] == token
+    next_backward_coord = [row + -1, col + -1]
+    next_forward_coord = [row + 1, col + 1]
+    while cells[next_backward_coord] == token
       count += 1
-      # p count
-
-      # next_coord = [next_coord[0] + DIRECTIONS[:diag_f][0][0], next_coord[1] + DIRECTIONSDIRECTIONS[:diag_f][0][1]]
-      next_coord = [next_coord[0] + -1, next_coord[1] + -1]
-
+      next_backward_coord = [next_backward_coord[0] + -1, next_backward_coord[1] + -1]
+    end
+    while cells[next_forward_coord] == token
+      count += 1
+      next_forward_coord = [next_forward_coord[0] + 1, next_forward_coord[1] + 1]
     end
     count if count == 4
   end
