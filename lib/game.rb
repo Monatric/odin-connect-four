@@ -14,10 +14,5 @@ class Game
 
   def switch_turn
     self.current_turn = (current_turn == player1 ? player2 : player1)
-    # if current_turn == player1
-    #   self.current_turn = player2
-    # else
-    #   self.current_turn = player1
-    # end
   end
 end
