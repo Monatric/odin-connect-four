@@ -241,6 +241,28 @@ describe Board do
           expect(result).to be false
         end
       end
+
+      context 'when the diagonal backward pattern is short' do
+        let(:cells_two_tokens_diag_b) do
+          {
+            [6, 1] => ' ', [6, 2] => ' ', [6, 3] => ' ', [6, 4] => ' ',
+            [5, 1] => ' ', [5, 2] => ' ', [5, 3] => ' ', [5, 4] => ' ',
+            [4, 1] => 'X', [4, 2] => ' ', [4, 3] => ' ', [4, 4] => ' ',
+            [3, 1] => 'O', [3, 2] => ' ', [3, 3] => ' ', [3, 4] => ' ',
+            [2, 1] => 'X', [2, 2] => 'O', [2, 3] => 'X', [2, 4] => ' ',
+            [1, 1] => 'X', [1, 2] => 'O', [1, 3] => 'O', [1, 4] => ' '
+          }
+        end
+        subject(:board_diagonal_tokens) { described_class.new(cells_two_tokens_diag_b) }
+        before do
+          board_diagonal_tokens.update(col_two, token_x)
+        end
+
+        it 'returns false' do
+          result = board_diagonal_tokens.game_over?(col_two)
+          expect(result).to be false
+        end
+      end
     end
   end
 end
