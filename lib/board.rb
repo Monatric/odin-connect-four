@@ -4,27 +4,6 @@
 class Board
   attr_reader :cells
 
-  # DIRECTIONS = [
-  #   # horizontal
-  #   [[0, -1], [0, 1]],
-  #   # diagonal backward
-  #   [[1, -1], [-1, 1]],
-  #   # diagonal forward
-  #   [[-1, -1], [1, 1]],
-  #   # vertical
-  #   [-1, 0]
-  #   # [-1, 1],
-  #   # [-1, 0],
-  #   # [-1, -1]
-  # ]
-
-  DIRECTIONS = {
-    vert: [-1, 0],
-    hori: [[0, -1], [0, 1]],
-    diag_b: [[1, -1], [-1, 1]],
-    diag_f: [[-1, -1], [1, 1]]
-  }
-
   def initialize(cells = create)
     @cells = cells
   end
