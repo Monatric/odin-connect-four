@@ -53,6 +53,12 @@ class Board
     row -= 1 while cells[[row, col]] == ' ' && row != 1
     # get the value (token) from that key
     token = cells[[row, col]]
+    scan_win_directions(row, col, token)
+  end
+
+  private
+
+  def scan_win_directions(row, col, token)
     return true if count_vertically(row, col, token) >= 4
     return true if count_diagonally_f(row, col, token) >= 4
     return true if count_diagonally_b(row, col, token) >= 4
@@ -60,8 +66,6 @@ class Board
 
     false
   end
-
-  private
 
   def count_vertically(row, col, token)
     count = 1
