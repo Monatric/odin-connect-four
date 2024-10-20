@@ -86,21 +86,21 @@ class Board
 
   def count_vertically(row, col, token)
     count = 1
-    next_coord = [row + DIRECTIONS[:vert][0], col + DIRECTIONS[:vert][1]]
+    next_coord = [row - 1, col]
     while cells[next_coord] == token
       count += 1
-      next_coord = [next_coord[0] + DIRECTIONS[:vert][0], next_coord[1] + DIRECTIONS[:vert][1]]
+      next_coord = [next_coord[0] - 1, next_coord[1]]
     end
     count
   end
 
   def count_horizontally(row, col, token)
     count = 1
-    next_backward_coord = [row, col + -1]
+    next_backward_coord = [row, col - 1]
     next_forward_coord = [row, col + 1]
     while cells[next_backward_coord] == token
       count += 1
-      next_backward_coord = [next_backward_coord[0], next_backward_coord[1] + -1]
+      next_backward_coord = [next_backward_coord[0], next_backward_coord[1] - 1]
     end
     while cells[next_forward_coord] == token
       count += 1
@@ -111,11 +111,11 @@ class Board
 
   def count_diagonally_f(row, col, token)
     count = 1
-    next_backward_coord = [row + -1, col + -1]
+    next_backward_coord = [row - 1, col - 1]
     next_forward_coord = [row + 1, col + 1]
     while cells[next_backward_coord] == token
       count += 1
-      next_backward_coord = [next_backward_coord[0] + -1, next_backward_coord[1] + -1]
+      next_backward_coord = [next_backward_coord[0] - 1, next_backward_coord[1] - 1]
     end
     while cells[next_forward_coord] == token
       count += 1
@@ -126,15 +126,15 @@ class Board
 
   def count_diagonally_b(row, col, token)
     count = 1
-    next_backward_coord = [row + 1, col + -1]
-    next_forward_coord = [row + -1, col + 1]
+    next_backward_coord = [row + 1, col - 1]
+    next_forward_coord = [row - 1, col + 1]
     while cells[next_backward_coord] == token
       count += 1
-      next_backward_coord = [next_backward_coord[0] + 1, next_backward_coord[1] + -1]
+      next_backward_coord = [next_backward_coord[0] + 1, next_backward_coord[1] - 1]
     end
     while cells[next_forward_coord] == token
       count += 1
-      next_forward_coord = [next_forward_coord[0] + -1, next_forward_coord[1] + 1]
+      next_forward_coord = [next_forward_coord[0] - 1, next_forward_coord[1] + 1]
     end
     count
   end
