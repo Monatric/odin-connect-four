@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # class for the connect four player
-class Person
+class Player
   attr_accessor :name, :token
 
   def initialize(name, token)
