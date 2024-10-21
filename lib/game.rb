@@ -20,7 +20,6 @@ class Game
   def drop_token(col, token)
     board.update(col, token)
     board.show
-    # puts display_winner(current_turn.name) if board.game_over?(col)
   end
 
   def switch_turn
@@ -29,10 +28,9 @@ class Game
 
   def conclusion
     if winner.nil?
-      puts 'TIE'
+      puts display_tie
     else
-      # puts display_winner(current_turn)
-      puts "#{current_turn.name} has won the game."
+      puts display_winner(winner.name)
     end
   end
 end
