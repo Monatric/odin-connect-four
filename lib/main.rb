@@ -9,19 +9,29 @@ def start(game)
   puts 'Welcome to Connect Four!'
   game.board.show
   select_column(game)
+  game.conclusion
 end
 
 def select_column(game)
   until game.board.full?
     puts "#{game.current_turn.name} turn."
-    print 'Select a column to drop the token: '
-
-    user_input = gets.chomp
-    user_input = verify_input(user_input, game)
+    user_input = take_input(game)
 
     game.drop_token(user_input, game.current_turn.token)
-    break if game.board.game_over?(user_input)
+    if game.board.game_over?(user_input)
+      game.winner = game.current_turn
+      break
+    end
+
+    game.switch_turn
   end
+end
+
+def take_input(game)
+  print 'Select a column to drop the token: '
+
+  user_input = gets.chomp
+  verify_input(user_input, game)
 end
 
 def verify_input(input, game)

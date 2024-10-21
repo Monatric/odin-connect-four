@@ -5,7 +5,7 @@ require_relative 'displayable'
 # class for starting and setting up the game Connect Four
 class Game
   attr_reader :board, :player1, :player2
-  attr_accessor :current_turn
+  attr_accessor :current_turn, :winner
 
   include Displayable
 
@@ -14,13 +14,13 @@ class Game
     @player1 = player1
     @player2 = player2
     @current_turn = @player1
+    @winner = nil
   end
 
   def drop_token(col, token)
     board.update(col, token)
     board.show
-    puts display_winner(current_turn.name) if board.game_over?(col)
-    switch_turn
+    # puts display_winner(current_turn.name) if board.game_over?(col)
   end
 
   def switch_turn
@@ -28,10 +28,11 @@ class Game
   end
 
   def conclusion
-    if board.game_over?
-      puts display_winner(current_turn)
+    if winner.nil?
+      puts 'TIE'
     else
-      puts display_tie
+      # puts display_winner(current_turn)
+      puts "#{current_turn.name} has won the game."
     end
   end
 end
