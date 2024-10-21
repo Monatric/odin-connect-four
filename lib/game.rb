@@ -9,7 +9,7 @@ class Game
 
   include Displayable
 
-  def initialize(board = Board.new, player1 = Player.new('Player 1', '♠'), player2 = Player.new('Player 2', '♣'))
+  def initialize(board = Board.new, player1 = Player.new('Player 1', '♞'), player2 = Player.new('Player 2', '♝'))
     @board = board
     @player1 = player1
     @player2 = player2
@@ -19,7 +19,7 @@ class Game
   def drop_token(col, token)
     board.update(col, token)
     board.show
-    puts display_winner(current_turn) if board.game_over?(col)
+    puts display_winner(current_turn.name) if board.game_over?(col)
     switch_turn
   end
 
