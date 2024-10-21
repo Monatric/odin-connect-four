@@ -19,9 +19,13 @@ describe Game do
     context 'when the current_turn is Player 2' do
       subject(:game) { described_class.new(board, player1, player2) }
 
+      before do
+      end
+
       it 'changes to Player 1 on next turn' do
-        allow(game).to receive(:current_turn).and_return(player2)
         game.switch_turn
+        game.switch_turn
+
         expect(game.current_turn).to be player1
       end
     end
