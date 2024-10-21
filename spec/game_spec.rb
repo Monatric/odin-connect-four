@@ -33,17 +33,18 @@ describe Game do
   end
 
   describe '#conclusion' do
+    let(:player1_with_name) { double('player1', name: 'Player 1') }
+    let(:player2_with_name) { double('player2', name: 'Player 2') }
+    subject(:game_over_player1_win) { described_class.new(board, player1_with_name, player2_with_name) }
     context 'when the game is over and player 1 wins' do
-      let(:player12) { double('player1', name: 'Player 1') }
-      subject(:game_over_player1_win) { described_class.new(board, player12, player2) }
       before do
-        allow(game_over_player1_win).to receive(:winner).and_return(player12)
+        allow(game_over_player1_win).to receive(:winner).and_return(player1_with_name)
       end
 
       it 'displays congrats to player 1' do
-        congrats_msg = "#{player12.name} has won the game."
+        congrats_msg = "#{player1_with_name.name} has won the game."
         expect(game_over_player1_win).to receive(:puts).with(congrats_msg)
-        game_over_player1_win.conclusion # TODO: works now. test the winner message
+        game_over_player1_win.conclusion
       end
     end
   end
