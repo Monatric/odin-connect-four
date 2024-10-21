@@ -16,6 +16,20 @@ describe Game do
         expect(game.current_turn).to be player2
       end
     end
+
+    context 'when the current_turn is Player 2' do
+      subject(:game) { described_class.new(board, player1, player2) }
+
+      before do
+      end
+
+      it 'changes to Player 1 on next turn' do
+        game.switch_turn
+        game.switch_turn
+
+        expect(game.current_turn).to be player1
+      end
+    end
   end
 
   describe '#conclusion' do
