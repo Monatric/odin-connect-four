@@ -60,5 +60,13 @@ describe Game do
         game_over_conclusion.conclusion
       end
     end
+
+    context 'when the game is over and nobody won' do
+      it 'displays the tie message' do
+        tie_msg = "No player won. It's a tie."
+        expect(game_over_conclusion).to receive(:puts).with(tie_msg)
+        game_over_conclusion.conclusion
+      end
+    end
   end
 end
