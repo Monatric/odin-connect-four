@@ -88,31 +88,19 @@ class Board
 
   def count_horizontally(row, col, token)
     count = 1
-    next_backward_coord = [row, col - 1]
-    next_forward_coord = [row, col + 1]
-    while cells[next_backward_coord] == token
-      count += 1
-      next_backward_coord = [next_backward_coord[0], next_backward_coord[1] - 1]
-    end
-    while cells[next_forward_coord] == token
-      count += 1
-      next_forward_coord = [next_forward_coord[0], next_forward_coord[1] + 1]
-    end
+    forward_coord = [row, col + 1]
+    backward_coord = [row, col - 1]
+    count += forward_counter(forward_coord, token, 0, 1)
+    count += backward_counter(backward_coord, token, 0, -1)
     count
   end
 
   def count_diagonally_f(row, col, token)
     count = 1
-    next_backward_coord = [row - 1, col - 1]
-    next_forward_coord = [row + 1, col + 1]
-    while cells[next_backward_coord] == token
-      count += 1
-      next_backward_coord = [next_backward_coord[0] - 1, next_backward_coord[1] - 1]
-    end
-    while cells[next_forward_coord] == token
-      count += 1
-      next_forward_coord = [next_forward_coord[0] + 1, next_forward_coord[1] + 1]
-    end
+    forward_coord = [row + 1, col + 1]
+    backward_coord = [row - 1, col - 1]
+    count += forward_counter(forward_coord, token, 1, 1)
+    count += backward_counter(backward_coord, token, -1, -1)
     count
   end
 
@@ -127,7 +115,6 @@ class Board
 
   def backward_counter(backward_coord, token, row_change, col_change)
     count = 0
-    p backward_coord
     while cells[backward_coord] == token
       count += 1
       backward_coord = [backward_coord[0] + row_change, backward_coord[1] + col_change]
