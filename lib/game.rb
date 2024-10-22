@@ -9,7 +9,9 @@ class Game
 
   include Displayable
 
-  def initialize(board = Board.new, player1 = Player.new('Player 1', '♞'), player2 = Player.new('Player 2', '♝'))
+  def initialize(board = Board.new,
+                 player1 = Player.new('Player 1', '♞'.colorize(:blue)),
+                 player2 = Player.new('Player 2', '♝'.colorize(:green)))
     @board = board
     @player1 = player1
     @player2 = player2
